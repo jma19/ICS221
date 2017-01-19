@@ -57,7 +57,7 @@ public class TextProcessor {
 
     public static void main(String[] args) {
         TextProcessor textProcessor = new TextProcessor();
-        List<String> tokens = textProcessor.getTokens("");
+        List<String> tokens = textProcessor.tokenize("file");
         Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
         textProcessor.print(res);
     }
