@@ -3,10 +3,6 @@ package com.uci.mj;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -14,36 +10,23 @@ import java.util.*;
  */
 public class TextProcessor {
 
-    private final String DELIM = " ,.;()[]{}!\\n";
+    private final String DELIM = " ,.*;()[]{}!\\n";
 
     public List<String> tokenize(String filePath) {
         if (Strings.isNullOrEmpty(filePath)) {
+            System.out.println("Input file is null or empty");
             return new ArrayList();
         }
-
-        FileReader in = null;
-        BufferedReader bufferedReader = null;
-        StringBuffer stringBuffer = new StringBuffer();
+        MyFileReader fileReader = null;
         try {
-            in = new FileReader(filePath);
-            bufferedReader = new BufferedReader(in);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuffer.append(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            fileReader = new MyFileReader(filePath);
+            //read all data from files
+            String txt = fileReader.read(-1);
+            return getTokens(txt);
         } finally {
-            try {
-                in.close();
-                bufferedReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            fileReader.close();
         }
-        return getTokens(stringBuffer.toString());
+
     }
 
     public void print(Map<String, Integer> map) {
@@ -55,6 +38,9 @@ public class TextProcessor {
 
     public Map<String, Integer> computeWordFrequencies(List<String> input) {
         HashMap<String, Integer> res = Maps.newHashMap();
+        if (input == null || input.isEmpty()) {
+            return res;
+        }
         input.stream().map(str -> res.put(str, res.getOrDefault(str, 0) + 1));
         return res;
     }
@@ -69,4 +55,10 @@ public class TextProcessor {
         return res;
     }
 
+    public static void main(String[] args) {
+        TextProcessor textProcessor = new TextProcessor();
+        List<String> tokens = textProcessor.getTokens("");
+        Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
+        textProcessor.print(res);
+    }
 }
