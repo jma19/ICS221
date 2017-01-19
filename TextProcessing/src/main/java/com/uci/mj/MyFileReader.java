@@ -43,7 +43,7 @@ public class MyFileReader {
         } catch (IOException e) {
             System.out.println("readLines file failed!!!");
         }
-        return res.toString();
+        return isEnd() ? null : res.toString();
     }
 
     public boolean isEnd() {
