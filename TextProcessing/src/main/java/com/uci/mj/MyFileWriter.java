@@ -13,7 +13,6 @@ public class MyFileWriter {
     private BufferedWriter out;
 
     public MyFileWriter(String filePath) {
-
         try {
             this.fstream = new FileWriter(filePath);
             this.out = new BufferedWriter(fstream);

@@ -14,7 +14,6 @@ public class QueueCache {
         }
     });
 
-
     public void offer(TokenNode nodes) {
         if (nodes != null) {
             priortyQueue.offer(nodes);
