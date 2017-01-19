@@ -8,6 +8,7 @@ import java.io.*;
 public class MyFileReader {
     private BufferedReader bufferedReader = null;
     private FileReader in = null;
+    private boolean isEnd = false;
 
     public MyFileReader(String filePath) {
         try {
@@ -19,12 +20,12 @@ public class MyFileReader {
     }
 
     /**
-     * @param lines number of lines to read, when lines = -1, read all text from file
+     * @param lines number of lines to readLines, when lines = -1, readLines all text from file
      * @return
      */
-    public String read(int lines) {
+    public String readLines(int lines) {
         StringBuffer res = new StringBuffer();
-        String lineTxt;
+        String lineTxt = null;
         try {
             if (lines == -1) {
                 while ((lineTxt = bufferedReader.readLine()) != null) {
@@ -36,10 +37,17 @@ public class MyFileReader {
                     lines--;
                 }
             }
+            if (lineTxt == null) {
+                isEnd = true;
+            }
         } catch (IOException e) {
-            System.out.println("read file failed!!!");
+            System.out.println("readLines file failed!!!");
         }
         return res.toString();
+    }
+
+    public boolean isEnd() {
+        return isEnd;
     }
 
     public void close() {
@@ -50,12 +58,12 @@ public class MyFileReader {
             if (bufferedReader != null) {
                 bufferedReader.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("close file failed!!!");
         }
     }
 
-    public static void main(String [] args){
-        System.out.println(-3%4);
+    public static void main(String[] args) {
+        System.out.println(-3 % 4);
     }
 }

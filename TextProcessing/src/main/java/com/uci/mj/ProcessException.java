@@ -5,4 +5,5 @@ package com.uci.mj;
  */
 public interface ProcessException {
     Exception FILE_NOT_EXISTS_EXCEPTION = new Exception("Can't find file, please check your file name!!!");
+
 }

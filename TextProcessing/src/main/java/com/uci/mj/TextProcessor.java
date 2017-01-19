@@ -20,8 +20,8 @@ public class TextProcessor {
         MyFileReader fileReader = null;
         try {
             fileReader = new MyFileReader(filePath);
-            //read all data from files
-            String txt = fileReader.read(-1);
+            //readLines all data from files
+            String txt = fileReader.readLines(-1);
             return getTokens(txt);
         } finally {
             fileReader.close();
@@ -45,7 +45,7 @@ public class TextProcessor {
         return res;
     }
 
-    private List<String> getTokens(String input) {
+    public List<String> getTokens(String input) {
         StringTokenizer tok = new StringTokenizer(input, DELIM, true);
         List<String> res = new ArrayList();
         while (tok.hasMoreTokens()) {
