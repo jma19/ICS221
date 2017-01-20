@@ -8,10 +8,13 @@ import java.io.*;
 public class MyFileReader {
     private BufferedReader bufferedReader = null;
     private FileReader in = null;
-    private boolean isEnd = false;
+    private String filePath;
+    private String encoding = "ISO-8859-1";
+    ;
 
     public MyFileReader(String filePath) {
         try {
+            this.filePath = filePath;
             in = new FileReader(filePath);
             bufferedReader = new BufferedReader(in);
         } catch (FileNotFoundException e) {
@@ -20,34 +23,15 @@ public class MyFileReader {
     }
 
     /**
-     * @param lines number of lines to readLines, when lines = -1, readLines all text from file
      * @return
      */
-    public String readLines(int lines) {
-        StringBuffer res = new StringBuffer();
-        String lineTxt = null;
+    public String readLines() {
         try {
-            if (lines == -1) {
-                while ((lineTxt = bufferedReader.readLine()) != null) {
-                    res.append(lineTxt);
-                }
-            } else {
-                while (lines > 0 && (lineTxt = bufferedReader.readLine()) != null) {
-                    res.append(lineTxt);
-                    lines--;
-                }
-            }
-            if (lineTxt == null) {
-                isEnd = true;
-            }
-        } catch (IOException e) {
+            return bufferedReader.readLine();
+        } catch (Exception exp) {
             System.out.println("readLines file failed!!!");
         }
-        return isEnd() ? null : res.toString();
-    }
-
-    public boolean isEnd() {
-        return isEnd;
+        return null;
     }
 
     public void close() {
@@ -63,7 +47,33 @@ public class MyFileReader {
         }
     }
 
+    public String readAll() {
+        File file = new File(filePath);
+        Long filelength = file.length();
+        byte[] filecontent = new byte[filelength.intValue()];
+        try {
+            FileInputStream in = new FileInputStream(file);
+            in.read(filecontent);
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            return new String(filecontent, encoding);
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("The OS does not support " + encoding);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(-3 % 4);
+        MyFileReader myFileReader = new MyFileReader("/Users/junm5/ICS221/TextProcessing/Inters2.txt");
+        String s = myFileReader.readAll();
+        System.out.println(s);
+        String lines = null;
+        while ((lines = myFileReader.readLines()) != null) {
+            System.out.println(lines);
+        }
     }
 }

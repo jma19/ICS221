@@ -24,7 +24,8 @@ public class TextProcessor {
         try {
             fileReader = new MyFileReader(filePath);
             //readLines all data from files
-            String txt = fileReader.readLines(-1);
+            String txt = fileReader.readLines();
+            System.out.println(txt);
             return getTokens(txt);
         } finally {
             fileReader.close();
@@ -53,14 +54,17 @@ public class TextProcessor {
         List<String> res = new ArrayList();
         while (tok.hasMoreTokens()) {
             String token = tok.nextToken();
-            res.add(token);
+            if (!Strings.isNullOrEmpty(token.trim())) {
+                res.add(token);
+            }
         }
         return res;
     }
 
     public static void main(String[] args) {
         TextProcessor textProcessor = new TextProcessor();
-        List<String> tokens = textProcessor.tokenize("file");
+        List<String> tokens = textProcessor.tokenize("/Users/junm5/ICS221/TextProcessing/Inters1.txt");
+        System.out.println(tokens);
         Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
         textProcessor.print(res);
     }

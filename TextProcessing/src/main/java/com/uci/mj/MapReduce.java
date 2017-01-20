@@ -80,7 +80,7 @@ public class MapReduce {
     }
 
     private void readNodeIntoQueue(MyFileReader myFileReader, PriorityQueue<MapTokenNode> priorityQueue, int source) {
-        String lines2 = myFileReader.readLines(1);
+        String lines2 = myFileReader.readLines();
         MapTokenNode transform2 = transform(lines2, source);
         if (transform2 != null) {
             priorityQueue.offer(transform2);

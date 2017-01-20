@@ -26,24 +26,29 @@ public class IntersectionProcessor {
     public Set<String> join() {
         Set<String> res = new HashSet<>();
         Set<String> set = new HashSet<>();
-
-        String lines = myFileReader1.readLines(1);
-        while (lines != null) {
-            List<String> tokens = textProcessor.getTokens(lines);
-            set.addAll(tokens);
-            lines = myFileReader1.readLines(1);
-        }
-        lines = myFileReader2.readLines(1);
-
-        while (lines != null) {
-            List<String> tokens = textProcessor.getTokens(lines);
-            for (String token : tokens) {
-                if (set.contains(token)) {
-                    res.add(token);
-                    set.remove(token);
-                }
+        try {
+            String lines = myFileReader1.readLines();
+            while (lines != null) {
+                List<String> tokens = textProcessor.getTokens(lines);
+                set.addAll(tokens);
+                lines = myFileReader1.readLines();
             }
+            lines = myFileReader2.readLines();
+            while (lines != null) {
+                List<String> tokens = textProcessor.getTokens(lines);
+                for (String token : tokens) {
+                    if (set.contains(token)) {
+                        res.add(token);
+                        set.remove(token);
+                    }
+                }
+                lines = myFileReader2.readLines();
+            }
+        } finally {
+            myFileReader1.close();
+            myFileReader2.close();
         }
+
         return res;
     }
 
@@ -54,7 +59,7 @@ public class IntersectionProcessor {
         Set<String> join = intersectionProcessor.join();
         System.out.println(join.size());
         for (String str : join) {
-            System.out.print(str + ",");
+            System.out.print(str + " ");
         }
     }
 }
