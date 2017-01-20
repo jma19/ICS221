@@ -46,7 +46,15 @@ public class IntersectionProcessor {
         }
         return res;
     }
-    public static void main(String [] args){
+
+    public static void main(String[] args) throws Exception {
 //        IntersectionProcessor intersectionProcessor = new IntersectionProcessor();
+        IntersectionProcessor intersectionProcessor = new IntersectionProcessor("/Users/junm5/ICS221/TextProcessing/Inters1.txt",
+                "/Users/junm5/ICS221/TextProcessing/Inters2.txt");
+        Set<String> join = intersectionProcessor.join();
+        System.out.println(join.size());
+        for (String str : join) {
+            System.out.print(str + ",");
+        }
     }
 }

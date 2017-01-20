@@ -12,6 +12,9 @@ public class TextProcessor {
 
     private final String DELIM = " ,.*;()[]{}!\\n";
 
+    public TextProcessor() {
+    }
+
     public List<String> tokenize(String filePath) {
         if (Strings.isNullOrEmpty(filePath)) {
             System.out.println("Input file is null or empty");

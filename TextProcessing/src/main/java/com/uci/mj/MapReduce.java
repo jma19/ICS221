@@ -1,5 +1,7 @@
 package com.uci.mj;
 
+import com.google.common.base.Strings;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -86,13 +88,14 @@ public class MapReduce {
     }
 
     private MapTokenNode transform(String lines, int source) {
-        if (lines == null) {
+        if (Strings.isNullOrEmpty(lines)) {
             return null;
         }
         try {
             String[] split = lines.split(DIMER);
             return new MapTokenNode(split[0], Integer.valueOf(split[1].trim()), source);
         } catch (Exception exp) {
+            System.out.println("data format error");
             exp.printStackTrace();
         }
         return null;
