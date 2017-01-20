@@ -18,7 +18,7 @@ public class MapReduce {
     private final Integer SOURCE_1 = 1;
     private final Integer SOURCE_2 = 2;
 
-    private final int numberOfLines = 10000000;
+    private final int numberOfLines = 2;
 
     PriorityQueue<MapTokenNode> priorityQueue = new PriorityQueue<>((o1, o2) -> o1.word.compareTo(o2.word));
 
