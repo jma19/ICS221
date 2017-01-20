@@ -10,4 +10,11 @@ public class TokenNode {
     public TokenNode(String word) {
         this.word = word;
     }
+
+    @Override
+    public String toString() {
+        return "TokenNode{" +
+                "word='" + word + '\'' +
+                '}';
+    }
 }
