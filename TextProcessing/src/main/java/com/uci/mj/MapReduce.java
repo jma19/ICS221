@@ -51,7 +51,8 @@ public class MapReduce {
                     readNodeIntoQueue(myFileReader2, priorityQueue, SOURCE_2);
                 }
                 //if memory size > numberOfLines, write data into files, and clear the  memory
-                if (map.size() > numberOfLines && !node.word.equals(pre.word)) {
+                if (map.size() > numberOfLines && !node.word.equals(pre.word) && (!priorityQueue.isEmpty()
+                        && !node.word.equals(priorityQueue.peek().word)))  {
                     Set<String> keys = map.keySet();
                     for (String key : keys) {
                         out.write(key + "," + map.get(key));

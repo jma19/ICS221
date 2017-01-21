@@ -6,9 +6,11 @@ package com.uci.mj;
 public class MapTokenNode extends TokenNode {
     int number;
     int source;
+    String word;
 
     public MapTokenNode(String word, int number, int source) {
         super(word);
+        this.word = word;
         this.number = number;
         this.source = source;
     }
@@ -18,6 +20,7 @@ public class MapTokenNode extends TokenNode {
         return "MapTokenNode{" +
                 "number=" + number +
                 ", source=" + source +
+                ", word='" + word + '\'' +
                 '}';
     }
 }
