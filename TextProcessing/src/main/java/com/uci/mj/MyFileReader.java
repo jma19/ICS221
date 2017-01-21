@@ -1,6 +1,8 @@
 package com.uci.mj;
 
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by junm5 on 1/18/17.
@@ -70,10 +72,11 @@ public class MyFileReader {
     public static void main(String[] args) {
         MyFileReader myFileReader = new MyFileReader("/Users/junm5/ICS221/TextProcessing/Inters2.txt");
         String s = myFileReader.readAll();
-        System.out.println(s);
-        String lines = null;
-        while ((lines = myFileReader.readLines()) != null) {
-            System.out.println(lines);
+        String pattern = "^[a-zA-Z0-9]*";
+        Pattern compile = Pattern.compile(pattern);
+        Matcher matcher = compile.matcher(s);
+        while (matcher.find()) {
+            System.out.println(matcher.group());
         }
     }
 }

@@ -10,7 +10,8 @@ import java.util.*;
  */
 public class TextProcessor {
 
-    private final String DELIM = " ,.*;()[]{}!\\n";
+    private final String DELIM = "-.,*;()[]{}!";
+    private String PATTERN = "[a-z] ";
 
     public TextProcessor() {
     }
@@ -24,8 +25,7 @@ public class TextProcessor {
         try {
             fileReader = new MyFileReader(filePath);
             //readLines all data from files
-            String txt = fileReader.readLines();
-            System.out.println(txt);
+            String txt = fileReader.readAll().trim();
             return getTokens(txt);
         } finally {
             fileReader.close();
@@ -45,7 +45,9 @@ public class TextProcessor {
         if (input == null || input.isEmpty()) {
             return res;
         }
-        input.stream().map(str -> res.put(str, res.getOrDefault(str, 0) + 1));
+        for (String token : input) {
+            res.put(token, res.getOrDefault(token, 0) + 1);
+        }
         return res;
     }
 
@@ -64,7 +66,6 @@ public class TextProcessor {
     public static void main(String[] args) {
         TextProcessor textProcessor = new TextProcessor();
         List<String> tokens = textProcessor.tokenize("/Users/junm5/ICS221/TextProcessing/Inters1.txt");
-        System.out.println(tokens);
         Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
         textProcessor.print(res);
     }
