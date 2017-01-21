@@ -79,10 +79,5 @@ public class MyFileReader {
         while (matcher.find()) {
             System.out.println(matcher.group());
         }
-//        Pattern p=Pattern.compile("\\w+");
-//        Matcher m=p.matcher("ab:def:sas");
-//        while(m.find()) {
-//            System.out.println(m.group());
-//        }
     }
 }

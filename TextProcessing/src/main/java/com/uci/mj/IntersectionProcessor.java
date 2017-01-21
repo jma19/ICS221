@@ -3,6 +3,7 @@ package com.uci.mj;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by junm5 on 1/18/17.
@@ -53,13 +54,20 @@ public class IntersectionProcessor {
     }
 
     public static void main(String[] args) throws Exception {
-//        IntersectionProcessor intersectionProcessor = new IntersectionProcessor();
+
+        long start = System.currentTimeMillis();
         IntersectionProcessor intersectionProcessor = new IntersectionProcessor("/Users/junm5/ICS221/TextProcessing/Inters1.txt",
                 "/Users/junm5/ICS221/TextProcessing/Inters2.txt");
         Set<String> join = intersectionProcessor.join();
-        System.out.println(join.size());
-        for (String str : join) {
+        System.out.println(String.format("Time cost : %s ms", System.currentTimeMillis() - start));
+        System.out.println(String.format("Intersection words number: %d", join.size()));
+        System.out.println("======================Word Intersection=====================");
+        List<String> collect = join.stream().sorted().collect(Collectors.toList());
+        for (String str : collect) {
             System.out.print(str + " ");
         }
+        System.out.println();
+        System.out.println("=========================================================");
+
     }
 }
