@@ -1,10 +1,11 @@
 package com.uci.mj;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * Created by junm5 on 1/19/17.
@@ -12,8 +13,7 @@ import java.util.*;
 public class MapReduce {
     private MyFileReader myFileReader1;
     private MyFileReader myFileReader2;
-    private FileWriter fstream;
-    private BufferedWriter out;
+    private MyFileWriter myFileWriter;
     private final String DIMER = ",";
     private final Integer SOURCE_1 = 1;
     private final Integer SOURCE_2 = 2;
@@ -29,8 +29,7 @@ public class MapReduce {
         if (file.exists()) {
             file.delete();
         }
-        this.fstream = new FileWriter(resPath, true);
-        this.out = new BufferedWriter(fstream);
+        myFileWriter = new MyFileWriter(resPath, true);
     }
 
     public void Merge() throws IOException {
@@ -53,26 +52,23 @@ public class MapReduce {
                         && !node.word.equals(priorityQueue.peek().word))) {
                     Set<String> keys = map.keySet();
                     for (String key : keys) {
-                        out.write(key + "," + map.get(key));
-                        out.newLine();
+                        myFileWriter.writeLine(key + "," + map.get(key));
                     }
                     map.clear();
-                    out.flush();
+                    myFileWriter.flush();
                 }
                 pre = node;
             }
             Set<String> keys = map.keySet();
             for (String key : keys) {
-                out.write(key + "," + map.get(key));
-                out.newLine();
+                myFileWriter.writeLine(key + "," + map.get(key));
             }
             map.clear();
-            out.flush();
+            myFileWriter.flush();
         } finally {
             myFileReader2.close();
             myFileReader1.close();
-            fstream.close();
-            out.close();
+            myFileWriter.close();
         }
 
 

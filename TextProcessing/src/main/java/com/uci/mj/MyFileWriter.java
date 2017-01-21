@@ -12,9 +12,9 @@ public class MyFileWriter {
     private FileWriter fstream;
     private BufferedWriter out;
 
-    public MyFileWriter(String filePath) {
+    public MyFileWriter(String filePath, boolean isAppend) {
         try {
-            this.fstream = new FileWriter(filePath);
+            this.fstream = new FileWriter(filePath, isAppend);
             this.out = new BufferedWriter(fstream);
         } catch (IOException e) {
             System.out.println(String.format("open file %s failed", filePath));
@@ -29,7 +29,14 @@ public class MyFileWriter {
         } catch (IOException e) {
             System.out.println(String.format("write line failed : %s", e.getMessage()));
         }
+    }
 
+    public void flush() {
+        try {
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void close() {
