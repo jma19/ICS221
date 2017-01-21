@@ -72,11 +72,17 @@ public class MyFileReader {
     public static void main(String[] args) {
         MyFileReader myFileReader = new MyFileReader("/Users/junm5/ICS221/TextProcessing/Inters2.txt");
         String s = myFileReader.readAll();
-        String pattern = "^[a-zA-Z0-9]*";
+        String pattern = "[a-z0-9A-Z]+";
         Pattern compile = Pattern.compile(pattern);
         Matcher matcher = compile.matcher(s);
+
         while (matcher.find()) {
             System.out.println(matcher.group());
         }
+//        Pattern p=Pattern.compile("\\w+");
+//        Matcher m=p.matcher("ab:def:sas");
+//        while(m.find()) {
+//            System.out.println(m.group());
+//        }
     }
 }

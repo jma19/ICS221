@@ -1,9 +1,12 @@
 package com.uci.mj;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by junm5 on 1/17/17.
@@ -11,9 +14,11 @@ import java.util.*;
 public class TextProcessor {
 
     private final String DELIM = "-.,*;()[]{}!";
-    private String PATTERN = "[a-z] ";
+    private String PATTERN = "[a-z0-9A-Z]+";
+    private Pattern compile;
 
     public TextProcessor() {
+        compile = Pattern.compile(PATTERN);
     }
 
     public List<String> tokenize(String filePath) {
@@ -52,21 +57,24 @@ public class TextProcessor {
     }
 
     public List<String> getTokens(String input) {
-        StringTokenizer tok = new StringTokenizer(input, DELIM, true);
-        List<String> res = new ArrayList();
-        while (tok.hasMoreTokens()) {
-            String token = tok.nextToken();
-            if (!Strings.isNullOrEmpty(token.trim())) {
-                res.add(token);
-            }
+        Matcher matcher = compile.matcher(input.toLowerCase());
+        List<String> res = Lists.newArrayList();
+        while (matcher.find()) {
+            res.add(matcher.group());
         }
         return res;
     }
 
+
     public static void main(String[] args) {
         TextProcessor textProcessor = new TextProcessor();
+        long start = System.currentTimeMillis();
         List<String> tokens = textProcessor.tokenize("/Users/junm5/ICS221/TextProcessing/Inters1.txt");
         Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
+        System.out.println(String.format("Time cost : %s ms", System.currentTimeMillis() - start));
+        System.out.println("======================Word Frequency=====================");
         textProcessor.print(res);
+        System.out.println("=========================================================");
+
     }
 }
