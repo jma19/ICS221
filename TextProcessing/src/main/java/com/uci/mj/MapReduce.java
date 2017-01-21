@@ -97,10 +97,10 @@ public class MapReduce {
     }
 
     public static void main(String[] args) throws IOException {
-        MapReduce mapReduce = new MapReduce(args[0], args[1], args[2]);
-//        MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
-//                "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
-//                , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
+//        MapReduce mapReduce = new MapReduce(args[0], args[1], args[2]);
+        MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
+                "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
+                , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
 
         mapReduce.Merge();
     }

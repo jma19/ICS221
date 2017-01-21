@@ -29,10 +29,12 @@ public class TextProcessor {
             //readLines all data from files
             String txt = fileReader.readAll().trim();
             return getTokens(txt);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             fileReader.close();
         }
-
+        return new ArrayList();
     }
 
     public void print(Map<String, Integer> map) {

@@ -14,14 +14,10 @@ public class MyFileReader {
     private String encoding = "ISO-8859-1";
     ;
 
-    public MyFileReader(String filePath) {
-        try {
-            this.filePath = filePath;
-            in = new FileReader(filePath);
-            bufferedReader = new BufferedReader(in);
-        } catch (FileNotFoundException e) {
-            System.out.println("open : " + filePath + " failed!!!");
-        }
+    public MyFileReader(String filePath) throws FileNotFoundException {
+        this.filePath = filePath;
+        in = new FileReader(filePath);
+        bufferedReader = new BufferedReader(in);
     }
 
     /**
@@ -69,7 +65,7 @@ public class MyFileReader {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         MyFileReader myFileReader = new MyFileReader("/Users/junm5/ICS221/TextProcessing/Inters2.txt");
         String s = myFileReader.readAll();
         String pattern = "[a-z0-9A-Z]+";
