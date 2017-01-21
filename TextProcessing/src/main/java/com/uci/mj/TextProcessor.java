@@ -1,8 +1,5 @@
 package com.uci.mj;
 
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -22,7 +19,7 @@ public class TextProcessor {
     }
 
     public List<String> tokenize(String filePath) {
-        if (Strings.isNullOrEmpty(filePath)) {
+        if (filePath == null || filePath.equals("")) {
             System.out.println("Input file is null or empty");
             return new ArrayList();
         }
@@ -46,7 +43,7 @@ public class TextProcessor {
     }
 
     public Map<String, Integer> computeWordFrequencies(List<String> input) {
-        HashMap<String, Integer> res = Maps.newHashMap();
+        HashMap<String, Integer> res = new HashMap();
         if (input == null || input.isEmpty()) {
             return res;
         }
@@ -58,7 +55,7 @@ public class TextProcessor {
 
     public List<String> getTokens(String input) {
         Matcher matcher = compile.matcher(input.toLowerCase());
-        List<String> res = Lists.newArrayList();
+        List<String> res = new ArrayList();
         while (matcher.find()) {
             res.add(matcher.group());
         }

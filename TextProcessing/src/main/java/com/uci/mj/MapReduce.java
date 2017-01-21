@@ -1,7 +1,5 @@
 package com.uci.mj;
 
-import com.google.common.base.Strings;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -52,7 +50,7 @@ public class MapReduce {
                 }
                 //if memory size > numberOfLines, write data into files, and clear the  memory
                 if (map.size() > numberOfLines && !node.word.equals(pre.word) && (!priorityQueue.isEmpty()
-                        && !node.word.equals(priorityQueue.peek().word)))  {
+                        && !node.word.equals(priorityQueue.peek().word))) {
                     Set<String> keys = map.keySet();
                     for (String key : keys) {
                         out.write(key + "," + map.get(key));
@@ -89,7 +87,7 @@ public class MapReduce {
     }
 
     private MapTokenNode transform(String lines, int source) {
-        if (Strings.isNullOrEmpty(lines)) {
+        if (lines == null || lines.equals("")) {
             return null;
         }
         try {
@@ -103,9 +101,10 @@ public class MapReduce {
     }
 
     public static void main(String[] args) throws IOException {
-        MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
-                "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
-                , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
+        MapReduce mapReduce = new MapReduce(args[0], args[1], args[2]);
+//        MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
+//                "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
+//                , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
 
         mapReduce.Merge();
     }
