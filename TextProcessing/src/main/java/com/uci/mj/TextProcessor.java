@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
  */
 public class TextProcessor {
 
-    private final String DELIM = "-.,*;()[]{}!";
     private String PATTERN = "[a-z0-9A-Z]+";
     private Pattern compile;
 
@@ -63,7 +62,6 @@ public class TextProcessor {
         }
         return res;
     }
-
 
     public static void main(String[] args) {
         TextProcessor textProcessor = new TextProcessor();
