@@ -37,9 +37,12 @@ public class TextProcessor {
     }
 
     public void print(Map<String, Integer> map) {
-        Set<String> keySet = map.keySet();
-        for (String key : keySet) {
-            System.out.println(key + " : " + map.get(key));
+        List<Map.Entry<String, Integer>> list = new ArrayList(map.entrySet());
+        Comparator<Map.Entry<String, Integer>> valueComparator = (o1, o2) -> o2.getValue()-o1.getValue();
+        Collections.sort(list,valueComparator);
+
+        for (Map.Entry<String, Integer> entry : list) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
         }
     }
 
