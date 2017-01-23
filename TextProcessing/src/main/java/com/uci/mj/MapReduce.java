@@ -20,7 +20,7 @@ public class MapReduce {
 
     private final int numberOfLines = 1000000;
 
-    PriorityQueue<MapTokenNode> priorityQueue = new PriorityQueue<>((o1, o2) -> o1.word.compareTo(o2.word));
+    private PriorityQueue<MapTokenNode> priorityQueue = new PriorityQueue<>((o1, o2) -> o1.word.compareTo(o2.word));
 
     public MapReduce(String file1, String file2, String resPath) throws IOException {
         this.myFileReader1 = new MyFileReader(file1);

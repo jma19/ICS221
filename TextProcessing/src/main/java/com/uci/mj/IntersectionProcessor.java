@@ -54,7 +54,6 @@ public class IntersectionProcessor {
     }
 
     public static void main(String[] args) throws Exception {
-
         long start = System.currentTimeMillis();
         IntersectionProcessor intersectionProcessor = new IntersectionProcessor("/Users/junm5/ICS221/TextProcessing/Inters1.txt",
                 "/Users/junm5/ICS221/TextProcessing/Inters2.txt");
