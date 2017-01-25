@@ -69,13 +69,13 @@ public class TextProcessor {
     }
 
     public static void main(String[] args) {
-        if (args[0] == null || args[0].equals("")) {
-            System.out.println("input file name should nout be null or empty!!!");
+        if (args == null || args.length == 0 || args[0] == null || args[0].equals("")) {
+            System.out.println("input file name should not be null or empty!!!");
             return;
         }
         TextProcessor textProcessor = new TextProcessor();
         long start = System.currentTimeMillis();
-        List<String> tokens = textProcessor.tokenize("/Users/junm5/ICS221/TextProcessing/Inters1.txt");
+        List<String> tokens = textProcessor.tokenize(args[0]);
         Map<String, Integer> res = textProcessor.computeWordFrequencies(tokens);
         System.out.println(String.format("Time cost : %s ms", System.currentTimeMillis() - start));
         System.out.println("======================Word Frequency=====================");

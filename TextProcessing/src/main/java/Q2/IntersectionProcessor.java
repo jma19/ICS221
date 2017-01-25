@@ -57,9 +57,14 @@ public class IntersectionProcessor {
     }
 
     public static void main(String[] args) throws Exception {
+
+        if (args == null || args.length < 2) {
+            System.out.println("Input two file names should not be null or empty!!!");
+            return;
+        }
         long start = System.currentTimeMillis();
-        IntersectionProcessor intersectionProcessor = new IntersectionProcessor("/Users/junm5/ICS221/TextProcessing/Inters1.txt",
-                "/Users/junm5/ICS221/TextProcessing/Inters2.txt");
+        IntersectionProcessor intersectionProcessor = new IntersectionProcessor(args[0],
+                args[1]);
         Set<String> join = intersectionProcessor.join();
         System.out.println(String.format("Time cost : %s ms", System.currentTimeMillis() - start));
         System.out.println(String.format("Intersection words number: %d", join.size()));
