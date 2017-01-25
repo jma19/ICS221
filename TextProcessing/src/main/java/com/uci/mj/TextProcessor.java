@@ -38,8 +38,8 @@ public class TextProcessor {
 
     public void print(Map<String, Integer> map) {
         List<Map.Entry<String, Integer>> list = new ArrayList(map.entrySet());
-        Comparator<Map.Entry<String, Integer>> valueComparator = (o1, o2) -> o2.getValue()-o1.getValue();
-        Collections.sort(list,valueComparator);
+        Comparator<Map.Entry<String, Integer>> valueComparator = (o1, o2) -> o2.getValue() - o1.getValue();
+        Collections.sort(list, valueComparator);
 
         for (Map.Entry<String, Integer> entry : list) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
@@ -67,6 +67,10 @@ public class TextProcessor {
     }
 
     public static void main(String[] args) {
+        if (args[0] == null || args[0].equals("")) {
+            System.out.println("input file name should nout be null or empty!!!");
+            return;
+        }
         TextProcessor textProcessor = new TextProcessor();
         long start = System.currentTimeMillis();
         List<String> tokens = textProcessor.tokenize("/Users/junm5/ICS221/TextProcessing/Inters1.txt");
