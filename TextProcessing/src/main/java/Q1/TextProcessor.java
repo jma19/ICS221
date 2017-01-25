@@ -1,5 +1,7 @@
-package com.uci.mj;
+package Q1;
 
+
+import common.MyFileReader;
 
 import java.util.*;
 import java.util.regex.Matcher;

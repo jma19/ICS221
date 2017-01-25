@@ -1,4 +1,4 @@
-package com.uci.mj;
+package common;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

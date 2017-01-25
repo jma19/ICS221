@@ -1,9 +1,9 @@
-package com.uci.mj;
+package Q3;
 
 /**
  * Created by junm5 on 1/19/17.
  */
-public class MapTokenNode  {
+public class MapTokenNode {
     int number;
     int source;
     String word;

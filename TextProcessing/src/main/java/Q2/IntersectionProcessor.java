@@ -1,4 +1,7 @@
-package com.uci.mj;
+package Q2;
+
+import Q1.TextProcessor;
+import common.MyFileReader;
 
 import java.util.HashSet;
 import java.util.List;

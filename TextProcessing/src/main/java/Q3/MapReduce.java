@@ -1,4 +1,7 @@
-package com.uci.mj;
+package Q3;
+
+import common.MyFileReader;
+import common.MyFileWriter;
 
 import java.io.File;
 import java.io.IOException;
