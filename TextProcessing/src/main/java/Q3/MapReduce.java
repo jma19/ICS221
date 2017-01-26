@@ -1,5 +1,6 @@
 package Q3;
 
+import Q2.IntersectionProcessor;
 import common.MyFileReader;
 import common.MyFileWriter;
 
@@ -100,12 +101,18 @@ public class MapReduce {
     }
 
     public static void main(String[] args) throws IOException {
-//        MapReduce mapReduce = new MapReduce(args[0], args[1], args[2]);
+        if (args == null || args.length < 3) {
+            System.out.println("Input three file names should not be null or empty!!!");
+            return;
+        }
+        long start = System.currentTimeMillis();
         MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
                 "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
                 , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
-
+        System.out.println("Begin merge...");
         mapReduce.Merge();
+        System.out.println("Finish merge...");
+        System.out.println(String.format("Time cost : %s ms", System.currentTimeMillis() - start));
     }
 
 
