@@ -106,9 +106,7 @@ public class MapReduce {
             return;
         }
         long start = System.currentTimeMillis();
-        MapReduce mapReduce = new MapReduce("/Users/junm5/ICS221/TextProcessing/MapReduce1.txt",
-                "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt"
-                , "/Users/junm5/ICS221/TextProcessing/MapReduceRes.txt");
+        MapReduce mapReduce = new MapReduce(args[0], args[1], args[2]);
         System.out.println("Begin merge...");
         mapReduce.Merge();
         System.out.println("Finish merge...");

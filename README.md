@@ -18,6 +18,7 @@ run the code: java Q2/IntersectionProcessor "/Users/junm5/ICS221/TextProcessing/
 Run Q3:
 enter into path: TextProcessing/src/main/java
 compile source code: javac -Xlint:unchecked Q3/MapReduce.java
-run the code: java Q3/MapReduce "/Users/junm5/ICS221/TextProcessing/MapReduce1.txt" "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt" "/Users/junm5/ICS221/TextProcessing/mapres.txt"
+run the code:
+java Q3/MapReduce "/Users/junm5/ICS221/TextProcessing/MapReduce1.txt" "/Users/junm5/ICS221/TextProcessing/MapReduce2.txt" "/Users/junm5/ICS221/TextProcessing/mapres.txt"
 
 
